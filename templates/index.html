@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Mission</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <!-- Craigslist Listings -->
+    <div class="row" id="craiglist-listings">
+      <div class="col-md-12">
+        <h2><b>Latest Mars News</b></h2>
+        <h4>{{listings.news_t}}</h4>
+        <h5>{{listings.news_p}}</h5>
+      </div>
+    </div>
+
+    <!-- Add Recent News -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="media">
+          <div class="media-body">
+            <h2 style="color: white"><b>Most Recent Mars News</b></h2>
+            <h4 class="media-heading" style="color: white"><b>{{listings.news_t}}</b></h4>
+            <h5 style="color: white"><p>{{listings.news_p}}</p></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Featured Image -->
+    <div class="row">
+      <div class="col-md-8">
+        <h2><b>Featured Mars Image</b></h2>
+          <img src="{{listings.featured_image_url}}" class="img-responsive">
+      </div>
+      <div class="col-md-4">
+        <h3>Mars Facts</h3>
+        {{listings.mars_facts | safe}}
+      </div>
+    </div>
+
+
+    <div class="row" style="margin-top: 80px;">
+      <div class="page-header">
+        <h2 class="text-center"><b>Mars Hemispheres</b></h2>
+      </div>
+      {% for hemisphere in listings.hemisphere_image_urls %}
+        <div class="col-md-6">
+          <div class="thumbnail">
+            <img src="{{hemisphere.img_url}}">
+            <div class="caption">
+              <h3><b>{{hemisphere.title}}</b></h3>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+
+
+
+
+
+  </div>
+</body>
+
+</html>
